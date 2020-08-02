@@ -2,7 +2,6 @@ import datetime as dt
 import numpy as np
 import pandas as pd
 import sqlalchemy
-
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
@@ -22,7 +21,7 @@ session = Session(engine)
 app = Flask(__name__)
 
 @app.route("/")
-def welcome():
+def welcome(): 
     return(
     '''
      Welcome to the Climate Analysis API!
@@ -72,3 +71,6 @@ def stats(start=None, end=None):
 	    filter(Measurement.date <= end).all()
     temps = list(np.ravel(results))
     return jsonify(temps=temps)
+
+if __name__ == '__main__':
+    app.run(debug=True)
